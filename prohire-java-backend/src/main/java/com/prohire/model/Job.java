@@ -31,7 +31,7 @@ public class Job {
     
     private String category;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "job_skills", joinColumns = @JoinColumn(name = "job_id"))
     @Column(name = "skill")
     private java.util.List<String> skills;

@@ -28,7 +28,7 @@ public class Professional {
     
     private String title;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "professional_skills", joinColumns = @JoinColumn(name = "professional_id"))
     @Column(name = "skill")
     private List<String> skills;
