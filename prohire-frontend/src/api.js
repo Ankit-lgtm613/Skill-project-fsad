@@ -1,4 +1,4 @@
-const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:8080/api";
+const API_BASE_URL = import.meta.env.VITE_API_URL || "https://skill-project-fsad-ic4y.onrender.com/api";
 
 function toCurrency(value) {
   return `$${Number(value || 0).toFixed(0)}`;
