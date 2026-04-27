@@ -330,6 +330,10 @@ export async function deleteJob(jobId) {
 }
 
 // MESSAGES
+export async function fetchConversations() {
+  return request('/messages/conversations');
+}
+
 export async function fetchMessages(userId) {
   return request(`/messages/${userId}`);
 }

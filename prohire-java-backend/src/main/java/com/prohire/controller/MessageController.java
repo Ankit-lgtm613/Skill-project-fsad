@@ -22,6 +22,18 @@ public class MessageController {
 
     private final UserRepository userRepository;
 
+    @GetMapping("/conversations")
+    public List<User> getConversations() {
+        String myEmail = SecurityContextHolder.getContext().getAuthentication().getName();
+        User me = userRepository.findByEmail(myEmail).orElseThrow(() -> new RuntimeException("Current user not found"));
+        
+        java.util.Set<User> conversationUsers = new java.util.HashSet<>();
+        conversationUsers.addAll(messageRepository.findReceiversByUser(me));
+        conversationUsers.addAll(messageRepository.findSendersByUser(me));
+        
+        return new java.util.ArrayList<>(conversationUsers);
+    }
+
     @GetMapping("/{userId}")
     public List<Message> getMessagesWithUser(@PathVariable Long userId) {
         String myEmail = SecurityContextHolder.getContext().getAuthentication().getName();

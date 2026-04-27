@@ -93,9 +93,16 @@ function ProfessionalCard({ pro }) {
          </div>
          
          <div className="flex gap-4 items-center">
-            <button onClick={handleContact} className="text-[9px] font-black uppercase text-slate-500 hover:text-white transition-all underline underline-offset-8 decoration-white/5 italic">Dossier</button>
             {(user?.role?.toLowerCase() === "user" || user?.role?.toLowerCase() === "admin") && (
-              <button onClick={handleHire} className="px-10 py-3.5 bg-indigo-600 text-white rounded-[1.25rem] text-[9.5px] font-black uppercase tracking-[0.4em] shadow-xl hover:bg-white hover:text-slate-950 transition-all italic active:scale-95 leading-none">Engage Sync</button>
+              <>
+                <button 
+                  onClick={(e) => { e.stopPropagation(); navigate("/messages", { state: { selectedUser: pro.user } }); }} 
+                  className="text-[9px] font-black uppercase text-slate-500 hover:text-white transition-all underline underline-offset-8 decoration-white/5 italic"
+                >
+                  Message
+                </button>
+                <button onClick={handleHire} className="px-10 py-3.5 bg-indigo-600 text-white rounded-[1.25rem] text-[9.5px] font-black uppercase tracking-[0.4em] shadow-xl hover:bg-white hover:text-slate-950 transition-all italic active:scale-95 leading-none">Engage Sync</button>
+              </>
             )}
          </div>
       </div>

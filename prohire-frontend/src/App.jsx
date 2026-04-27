@@ -15,6 +15,7 @@ import Connections from "./pages/Connections";
 import Jobs from "./pages/Jobs";
 import Settings from "./pages/Settings";
 import Support from "./pages/Support";
+import Messages from "./pages/Messages";
 
 function App() {
   return (
@@ -93,6 +94,14 @@ function App() {
             element={
             <ProtectedRoute>
               <Support />
+            </ProtectedRoute>
+            }
+          />
+           <Route
+            path="/messages"
+            element={
+            <ProtectedRoute>
+              <Messages />
             </ProtectedRoute>
             }
           />

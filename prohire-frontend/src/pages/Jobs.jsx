@@ -271,18 +271,26 @@ export default function Jobs() {
                   </div>
                   
                   <div className="flex items-center gap-4">
-                    {(user?.id === job.userId || user?.role === "ADMIN") ? (
+                    {(user?.id === (job.poster?.id || job.userId) || user?.role === "ADMIN") ? (
                       <div className="flex gap-4">
                         <button onClick={() => { setEditingJob(job); setFormData(job); setShowForm(true); }} className="text-[10px] font-black uppercase text-indigo-500 hover:text-white transition-all underline decoration-indigo-500/30 underline-offset-8 italic">Edit</button>
                         <button onClick={() => handleDelete(job.id)} className="text-[10px] font-black uppercase text-pink-500 hover:text-white transition-all underline decoration-pink-500/30 underline-offset-8 italic">Remove</button>
                       </div>
                     ) : (
-                      <button 
-                        onClick={() => handleApply(job.id)}
-                        className="px-10 py-4 bg-emerald-600 text-white rounded-[1rem] text-[9.5px] font-black uppercase tracking-[0.4em] shadow-xl hover:bg-white hover:text-slate-950 transition-all italic active:scale-95"
-                      >
-                        APPLY NOW
-                      </button>
+                      <div className="flex gap-4 items-center">
+                        <button 
+                          onClick={() => navigate("/messages", { state: { selectedUser: job.poster } })}
+                          className="px-8 py-4 border border-white/10 text-slate-400 hover:text-white hover:bg-white/5 rounded-[1rem] text-[9.5px] font-black uppercase tracking-[0.4em] transition-all italic active:scale-95"
+                        >
+                          MESSAGE CLIENT
+                        </button>
+                        <button 
+                          onClick={() => handleApply(job.id)}
+                          className="px-10 py-4 bg-emerald-600 text-white rounded-[1rem] text-[9.5px] font-black uppercase tracking-[0.4em] shadow-xl hover:bg-white hover:text-slate-950 transition-all italic active:scale-95"
+                        >
+                          APPLY NOW
+                        </button>
+                      </div>
                     )}
                   </div>
                 </div>

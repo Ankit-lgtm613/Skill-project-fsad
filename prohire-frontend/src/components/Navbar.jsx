@@ -34,6 +34,7 @@ function Navbar() {
     items.push(
       { to: "/jobs", label: "Jobs" },
       { to: "/professionals", label: "Experts" },
+      { to: "/messages", label: "Messages" },
       { to: "/hires", label: "Hires" },
       { to: "/profile", label: "Profile" },
       { to: "/settings", label: "Settings" },
