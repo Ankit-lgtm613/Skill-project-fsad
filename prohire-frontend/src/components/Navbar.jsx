@@ -18,22 +18,29 @@ function Navbar() {
 
   const navItems = useMemo(() => {
     if (!token) return [{ to: "/", label: "Home" }];
-    const base = [
-      { to: "/", label: "Home" },
-      { to: "/dashboard", label: "Dashboard" },
-      { to: "/jobs", label: "Jobs" },
+    
+    const items = [
+      { to: "/dashboard", label: "Dashboard" }
     ];
-    const dynamic = [];
-    if (user?.role === "admin") dynamic.push({ to: "/admin", label: "Admin" });
-    else if (user?.role === "user") { 
-      dynamic.push({ to: "/connections", label: "Connections" }); 
-      dynamic.push({ to: "/professionals", label: "Professionals" }); 
-      dynamic.push({ to: "/hires", label: "Hires" });
-    } else if (user?.role === "professional") {
-      dynamic.push({ to: "/connections", label: "Connections" }); 
-      dynamic.push({ to: "/professionals", label: "Professionals" }); 
+    
+    if (user?.role === "admin") {
+      items.push({ to: "/admin", label: "Admin Panel" });
     }
-    return [...base, ...dynamic];
+    
+    if (user?.role === "user" || user?.role === "professional") {
+      items.push({ to: "/connections", label: "Connections" });
+    }
+    
+    items.push(
+      { to: "/jobs", label: "Jobs" },
+      { to: "/professionals", label: "Experts" },
+      { to: "/hires", label: "Hires" },
+      { to: "/profile", label: "Profile" },
+      { to: "/settings", label: "Settings" },
+      { to: "/support", label: "Support" }
+    );
+    
+    return items;
   }, [token, user?.role]);
 
   const handleLogout = () => {
