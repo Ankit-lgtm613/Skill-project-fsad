@@ -18,10 +18,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import lombok.RequiredArgsConstructor;
-import java.util.Arrays;
+
 
 @Component
 @RequiredArgsConstructor
+@SuppressWarnings("null")
 public class DatabaseSeeder implements CommandLineRunner {
 
     private final UserRepository userRepository;
